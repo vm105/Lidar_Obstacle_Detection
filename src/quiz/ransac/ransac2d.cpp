@@ -175,9 +175,7 @@ std::unordered_set<int> RansacPlane(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, i
 std::unordered_set<int> Ransac(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, int maxIterations, float distanceTol)
 {
 	std::unordered_set<int> inliersResult;
-	// srand(time(NULL));
 	
-	// TODO: Fill in this function
 	std:srand(std::time(nullptr));
 	std::size_t point_size = cloud->size();
 	typedef std::unordered_set<std::pair<std::size_t, std::size_t>, boost::hash<std::pair<size_t, size_t> > > my_set_t;
@@ -241,10 +239,6 @@ int main ()
 	// Create data
 	// pcl::PointCloud<pcl::PointXYZ>::Ptr cloud = CreateData();
 	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud = CreateData3D();
-	
-
-	// TODO: Change the max iteration and distance tolerance arguments for Ransac function
-	// std::unordered_set<int> inliers = Ransac(cloud, 10, 1.0);
 	std::unordered_set<int> inliers = RansacPlane(cloud, 50, 0.2);
 
 

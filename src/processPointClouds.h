@@ -53,36 +53,36 @@ public:
   
 };
 
-class Plane
-{
-	public:
-		Plane(float x1, float x2, float x3,
-			float y1, float y2, float y3, float z1, float z2, float z3)
-		{
-			A = (y2 - y1) * (z3 - z1) - (z2 - z1) * (y3 - y1);
-			B = (z2 - z1) * (x3 - x1) - (x2 - x1) * (z3 - z1);
-			C = (x2 - x1) * (y3 - y1) - (y2 - y1) * (x3 - x1);
-			D = -((A * x1) + (B * y1) + (C * z1));
-		}
-
-		float get_dist_from(float x, float y, float z)
-		{
-			return std::fabs((A*x + B*y + C*z + D))/ sqrtf(A*A + B*B + C*C);
-		}
-
-	private:
-		float A;
-		float B;
-		float C;
-		float D;
-};
 typedef std::unordered_set<int> my_visited_set_t;
 
 namespace my_pcl
 {
+	class Plane
+	{
+		public:
+			Plane(float x1, float x2, float x3,
+				float y1, float y2, float y3, float z1, float z2, float z3)
+			{
+				A = (y2 - y1) * (z3 - z1) - (z2 - z1) * (y3 - y1);
+				B = (z2 - z1) * (x3 - x1) - (x2 - x1) * (z3 - z1);
+				C = (x2 - x1) * (y3 - y1) - (y2 - y1) * (x3 - x1);
+				D = -((A * x1) + (B * y1) + (C * z1));
+			}
+
+			float getDistFrom(float x, float y, float z)
+			{
+				return std::fabs((A*x + B*y + C*z + D))/ sqrtf(A*A + B*B + C*C);
+			}
+
+		private:
+			float A;
+			float B;
+			float C;
+			float D;
+	};
 
 	template<typename PointT>
-	std::vector<int> RansacPlane(typename pcl::PointCloud<PointT>::Ptr, int, float);
+	std::vector<int> ransacPlane(typename pcl::PointCloud<PointT>::Ptr, int, float);
 
 	template<typename PointT>
 	void proximity(typename pcl::PointCloud<PointT>::Ptr, int, my_pcl::KdTree*,float , my_visited_set_t&, std::vector<int>&, int);
@@ -91,7 +91,7 @@ namespace my_pcl
 	std::vector<pcl::PointIndices> euclideanCluster(typename pcl::PointCloud<PointT>::Ptr, my_pcl::KdTree*, float, int, int);
 
 	template<typename PointT>
-	void setup_kdtree(typename pcl::PointCloud<PointT>::Ptr, my_pcl::KdTree*, int);
+	void setupKdtree(typename pcl::PointCloud<PointT>::Ptr, my_pcl::KdTree*, int);
 }
 
 #endif /* PROCESSPOINTCLOUDS_H_ */

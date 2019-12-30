@@ -36,7 +36,7 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr CreateData(std::vector<std::vector<float>> p
   		pcl::PointXYZ point;
   		point.x = points[i][0];
   		point.y = points[i][1];
-  		point.z = points[i][2];//0;
+  		point.z = 0;
 
   		cloud->points.push_back(point);
 
@@ -99,7 +99,6 @@ void proximity(const std::vector<std::vector<float>>& points, int target_ndx, Kd
 
 std::vector<std::vector<int>> euclideanCluster(const std::vector<std::vector<float>>& points, KdTree* tree, float distanceTol)
 {
-	// TODO: Fill out this function to return list of indices for each cluster
 	my_visited_set_t visited{};
 
 	std::vector<std::vector<int>> clusters;
@@ -136,7 +135,7 @@ int main ()
 	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud = CreateData(points);
 
 	KdTree* tree = new KdTree;
-	tree->set_dimension(3);
+	tree->set_dimension(2);
   
     for (int i=0; i<points.size(); i++) 
     	tree->insert(points[i],i); 
