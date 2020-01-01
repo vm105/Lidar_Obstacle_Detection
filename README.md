@@ -42,9 +42,11 @@ $> ./environment
 ### Demo
 #### Raw Point Cloud Data
 the initial (unprocessed) point cloud:
+<br>
 ![ANIMATION](demo/data_1.gif)
 
 #### Segmented and Clustered Point Cloud Data
 The processed point cloud, with identified and clustered points belonging to obstacles.
 Bounding boxes illustrate this separation:
+<br>
 ![ANIMATION](demo/data_1_filtered.gif)
