@@ -16,7 +16,7 @@ implementation
 - Internally, the Euclidean clustering algorithm uses a custom k-d tree to speed-up the
 search of points lying in the close proximity with the provided target point. 
 - The code uses the custom implementations for all the above by default. Uncomment
-the macro ```"USE_PCL"``` defined in [src/environment.cpp](src/environment.cpp) to use
+the macro ```USE_PCL``` defined in [src/processPointClouds.cpp](src/processPointClouds.cpp) to use
 the PCL libraries for segmentation and clustering.
 
 ### Dependencies
@@ -35,18 +35,16 @@ $> cd ..
 
 ### Run
 ```
-$> build/environment
+$> cd build
+$> ./environment
 ```
 
 ### Demo
 #### Raw Point Cloud Data
-![ANIMATION](demo/data_1_.gif)
+the initial (unprocessed) point cloud:
+![ANIMATION](demo/data_1.gif)
 
 #### Segmented and Clustered Point Cloud Data
+The processed point cloud, with identified and clustered points belonging to obstacles.
+Bounding boxes illustrate this separation:
 ![ANIMATION](demo/data_1_filtered.gif)
-
-### Results Description
-On the upper side in the [Demo](#demo) section, the initial (unprocessed)
-point clouds are presented. On the lower side, there are processed point
-clouds, with identified and clustered points belonging to obstacles
-(cars and other obstacles). Bounding boxes illustrate this separation.
